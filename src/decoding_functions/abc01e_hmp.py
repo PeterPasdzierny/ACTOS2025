@@ -8,7 +8,9 @@ def decode_hmp(raw_file):
     data = [
         (
             line.split("*")[0],
-            bytes.fromhex(line.split("*")[1]).replace(b"\x00", b"").decode("ascii"),
+            bytes.fromhex(line.split("*")[1].rstrip("0"))
+            # .replace(b"\x00", b"")
+            .decode("ascii"),
         )
         for line in data
     ]
@@ -36,6 +38,13 @@ def decode_hmp(raw_file):
         hmp.append(current)
 
     file_header = ["DATETIME,1_HMP,2_HMP,3_HMP"]
+
+    temp = []
+    for line in hmp:
+        line = re.sub(r",+", ",", line)
+        line = re.sub(r",$", "", line)
+        temp.append(f"{line}")
+    hmp = temp
 
     data = file_header + hmp
 

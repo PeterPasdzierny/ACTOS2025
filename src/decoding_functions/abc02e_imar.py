@@ -1,5 +1,4 @@
 import datetime
-import os
 import numpy as np
 import re
 from struct import unpack
@@ -188,5 +187,33 @@ def decode_imar(raw_file):
         data_new5.append(f"{timestamp},{text}")
 
     data = data_new5
+
+    header = [
+        "DATETIME",
+        "DATETIME_GPS",
+        "LON",
+        "LAT",
+        "ALTITUDE_WGS84",
+        "STATUS_INSPOSLLH",
+        "ACC_X",
+        "ACC_Y",
+        "ACC_Z",
+        "OMG_X",
+        "OMG_Y",
+        "OMG_Z",
+        "STATUS_IMUCOMP",
+        "ROLL",
+        "PITCH",
+        "YAW",
+        "STATUS_INSRPY",
+        "VEL_X",
+        "VEL_Y",
+        "VEL_Z",
+        "STATUS_INSVELBODY",
+    ]
+    header = [",".join(header)]
+    print(header)
+
+    data = header + data
 
     return data
