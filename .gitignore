@@ -1,0 +1,4 @@
+data/
+doc/
+src/__pycache__
+src/decoding_functions/__pycache__/
