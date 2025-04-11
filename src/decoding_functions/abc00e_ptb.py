@@ -20,7 +20,7 @@ def decode_ptb(raw_file):
         if "P" in data[i + 1]:
             ptb.append(
                 # data[i][0] + "," + re.sub(r"[PTB\s+]", "", data[i][1])
-                data[i][0] + "," + "-999"
+                data[i][0] + "," + "NAN"
             )  # oder besser NaN/-999 einfügen, statt des ggfls. unvollständigen wertes?
         if not "PTB" in data[i + 1]:
             # else:
