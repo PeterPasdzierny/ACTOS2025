@@ -136,7 +136,7 @@ def decode_imar(raw_file):
             insposllh = decode_insposllh(bytes.fromhex(insposllh))
             inu_data.append(insposllh)
         else:
-            inu_data.append("NAN,")
+            inu_data.append(",NAN,")
 
         match = re.search(r"(7e02.{4}2c00)", datasection)
         if match:
@@ -144,7 +144,7 @@ def decode_imar(raw_file):
             imucomp = decode_imucomp(bytes.fromhex(imucomp))
             inu_data.append(imucomp)
         else:
-            inu_data.append("NAN,")
+            inu_data.append(",NAN,")
 
         match = re.search(r"(7e04.{4}2000)", datasection)
         if match:
@@ -152,7 +152,7 @@ def decode_imar(raw_file):
             insrpy = decode_insrpy(bytes.fromhex(insrpy))
             inu_data.append(insrpy)
         else:
-            inu_data.append("NAN,")
+            inu_data.append(",NAN,")
 
         match = re.search(r"(7e09.{4}2000)", datasection)
         if match:
