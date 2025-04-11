@@ -46,7 +46,7 @@ for raw_file in raw_files:
             data = sensor_info[stream_id]["decode_function"](raw_file)
             write_decoded_data(flightdir, raw_file, data)
         except:
-            print(f"Processing of {stream - id} raw file failed. Skipping file...")
+            print(f"Processing of {stream_id} raw file failed. Skipping file...")
     else:
         print(f"No parser for stream-ID: {stream_id} implemented yet. Skipping file...")
 
