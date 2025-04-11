@@ -42,8 +42,11 @@ for raw_file in raw_files:
     print(f"Decoding {stream_id} raw-data file...")
 
     if "decode_function" in sensor_info[stream_id].keys():
-        data = sensor_info[stream_id]["decode_function"](raw_file)
-        write_decoded_data(flightdir, raw_file, data)
+        try:
+            data = sensor_info[stream_id]["decode_function"](raw_file)
+            write_decoded_data(flightdir, raw_file, data)
+        except:
+            print(f"Processing of {stream - id} raw file failed. Skipping file...")
     else:
         print(f"No parser for stream-ID: {stream_id} implemented yet. Skipping file...")
 
