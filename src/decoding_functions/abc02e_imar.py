@@ -132,35 +132,47 @@ def decode_imar(raw_file):
 
         match = re.search(r"(7e0a.{4}2800)", datasection)
         if match:
-            insposllh = datasection[match.start(1) : match.start(1) + 80]
-            insposllh = decode_insposllh(bytes.fromhex(insposllh))
-            inu_data.append(insposllh)
+            try:
+                insposllh = datasection[match.start(1) : match.start(1) + 80]
+                insposllh = decode_insposllh(bytes.fromhex(insposllh))
+                inu_data.append(insposllh)
+            except:
+                inu_data.append(",NAN,NAN,NAN,NAN,NAN,")
         else:
-            inu_data.append(",NAN,")
+            inu_data.append(",NAN,NAN,NAN,NAN,NAN,")
 
         match = re.search(r"(7e02.{4}2c00)", datasection)
         if match:
-            imucomp = datasection[match.start(1) : match.start(1) + 88]
-            imucomp = decode_imucomp(bytes.fromhex(imucomp))
-            inu_data.append(imucomp)
+            try:
+                imucomp = datasection[match.start(1) : match.start(1) + 88]
+                imucomp = decode_imucomp(bytes.fromhex(imucomp))
+                inu_data.append(imucomp)
+            except:
+                inu_data.append(",NAN,NAN,NAN,NAN,NAN,NAN,NAN,")
         else:
-            inu_data.append(",NAN,")
+            inu_data.append(",NAN,NAN,NAN,NAN,NAN,NAN,NAN,")
 
         match = re.search(r"(7e04.{4}2000)", datasection)
         if match:
-            insrpy = datasection[match.start(1) : match.start(1) + 64]
-            insrpy = decode_insrpy(bytes.fromhex(insrpy))
-            inu_data.append(insrpy)
+            try:
+                insrpy = datasection[match.start(1) : match.start(1) + 64]
+                insrpy = decode_insrpy(bytes.fromhex(insrpy))
+                inu_data.append(insrpy)
+            except:
+                inu_data.append(",NAN,NAN,NAN,NAN,")
         else:
-            inu_data.append(",NAN,")
+            inu_data.append(",NAN,NAN,NAN,NAN,")
 
         match = re.search(r"(7e09.{4}2000)", datasection)
         if match:
-            insvelbody = datasection[match.start(1) : match.start(1) + 64]
-            insvelbody = decode_insvelbody(bytes.fromhex(insvelbody))
-            inu_data.append(insvelbody)
+            try:
+                insvelbody = datasection[match.start(1) : match.start(1) + 64]
+                insvelbody = decode_insvelbody(bytes.fromhex(insvelbody))
+                inu_data.append(insvelbody)
+            except:
+                inu_data.append(",NAN,NAN,NAN,NAN,")
         else:
-            inu_data.append(",NAN,")
+            inu_data.append(",NAN,NAN,NAN,NAN,")
 
         # NOT YET IMPLEMENTED CORRECTLY:
         # match = re.search(r"(7e12.{4}6800)", datasection)
@@ -212,7 +224,6 @@ def decode_imar(raw_file):
         "STATUS_INSVELBODY",
     ]
     header = [",".join(header)]
-    print(header)
 
     data = header + data
 
