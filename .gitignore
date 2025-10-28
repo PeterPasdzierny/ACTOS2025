@@ -2,3 +2,5 @@ data/
 doc/
 src/__pycache__/
 src/decoding_functions/__pycache__/
+build/
+src/actos_parser.egg-info/
